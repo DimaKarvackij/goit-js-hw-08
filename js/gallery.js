@@ -1,76 +1,74 @@
-// const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector(".gallery");
 
-// function createGalleryItem(image) {
-//   const listItem = document.createElement("li");
-//   listItem.classList.add("gallery-item");
+function createGalleryItem(image) {
+  const listItem = document.createElement("li");
+  listItem.classList.add("gallery-item");
 
-//   const link = document.createElement("a");
-//   link.classList.add("gallery-link");
-//   link.href = "#";
+  const link = document.createElement("a");
+  link.classList.add("gallery-link");
+  link.href = "#";
 
-//   const img = document.createElement("img");
-//   img.classList.add("gallery-image");
-//   img.src = image.preview;
-//   img.dataset.source = image.original;
-//   img.alt = image.description;
+  const img = document.createElement("img");
+  img.classList.add("gallery-image");
+  img.src = image.preview;
+  img.dataset.source = image.original;
+  img.alt = image.description;
 
-//   link.appendChild(img);
-//   listItem.appendChild(link);
+  link.appendChild(img);
+  listItem.appendChild(link);
 
-//   return listItem;
-//}
+  return listItem;
+}
 
-// function openLightbox(image) {
-//   const lightbox = basicLightbox.create(
-//     `<img src="${image.original}" alt="${image.description}">`
-//   );
-//   lightbox.show();
-// }
+function openLightbox(image) {
+  const lightbox = basicLightbox.create(
+    `<img src="${image.original}" alt="${image.description}">`
+  );
+  lightbox.show();
+}
 
-// const galleryFragment = document.createDocumentFragment();
+const galleryFragment = document.createDocumentFragment();
 
-// images.forEach((image) => {
-//   const galleryItem = createGalleryItem(image);
-//   galleryFragment.appendChild(galleryItem);
-// });
+images.forEach((image) => {
+  const galleryItem = createGalleryItem(image);
+  galleryFragment.appendChild(galleryItem);
+});
 
-// gallery.appendChild(galleryFragment);
+gallery.appendChild(galleryFragment);
 
-// gallery.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   const target = event.target;
+gallery.addEventListener("click", function (event) {
+  event.preventDefault();
+  const target = event.target;
 
-//   if (target.classList.contains("gallery-image")) {
-//     const image = images.find((img) => img.original === target.dataset.source);
-//     if (image) {
-//       openLightbox(image);
-//     }
-//   }
-// });
-
-// const result = document.querySelector(".gallery");
-// console.log(result);
-
-// result.insertAdjacentHTML("beforeend", createMarkupAll(images));
-// function createMarkupAll(arr) {
-//   return arr
-//     .map(
-//       ({ preview, original, description }) => `<li class="gallery-item" data-id>
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img
-//       class="gallery-image"
-//       src="small-image.jpg"
-//       data-source="large-image.jpg"
-//       alt="Image description"
-//     />
-//   </a>
-// </li>
-// `
-//     )
-//     .join("");
-// }
+  if (target.classList.contains("gallery-image")) {
+    const image = images.find((img) => img.original === target.dataset.source);
+    if (image) {
+      openLightbox(image);
+    }
+  }
+});
 
 const result = document.querySelector(".gallery");
+console.log(result);
+
+result.insertAdjacentHTML("beforeend", createMarkupAll(images));
+function createMarkupAll(arr) {
+  return arr
+    .map(
+      ({ preview, original, description }) => `<li class="gallery-item" data-id>
+  <a class="gallery-link" href="large-image.jpg">
+    <img
+      class="gallery-image"
+      src="small-image.jpg"
+      data-source="large-image.jpg"
+      alt="Image description"
+    />
+  </a>
+</li>
+`
+    )
+    .join("");
+}
 
 const images = [
   {
